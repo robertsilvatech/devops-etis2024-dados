@@ -39,7 +39,7 @@ Criar volume nomeado
 docker volume create db-backend-dev
 ```
 
-`Faca o restore do banco que encontra-se na pasta [backup-db](database/backup-db)`
+`Faca o restore do banco, o dump encontra-se na pasta database`
 
 Deploy dos containers
 
