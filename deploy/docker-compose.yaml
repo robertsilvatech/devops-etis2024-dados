@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  frontend-dev:
+    image: robertsilvatech/etis-frontend:0.0.6
+    ports:
+      - "3000:3000"
+    environment:
+      - API_URL=http://64.226.102.15:8090
+    networks:
+      - etis
+  backend-dev:
+    image: robertsilvatech/etis-backend:0.0.13
+    ports:
+      - "8090:8080"
+    environment:
+      - DB_HOST=db-backend-dev
+      - DB_PORT=5432
+      - DB_USER=backend
+      - DB_PASSWORD=backend
+      - DB_NAME=desafio_ods
+    networks:
+      - etis
+  db-backend-dev:
+    image: postgres:15
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=backend
+      - POSTGRES_PASSWORD=backend
+      - POSTGRES_DB=desafio_ods
+    volumes: 
+      - db-backend-dev:/var/lib/postgresql/data
+    networks:
+      - etis
+
+networks:
+  etis:
+    external: true
+
+volumes:
+  db-backend-dev:
+    external: true    
